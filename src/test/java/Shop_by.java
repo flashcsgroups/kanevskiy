@@ -108,6 +108,8 @@ public class Shop_by {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
         WebElement to_show =
                 driver.findElement(By.
                         xpath("//*[@id=\"ModelFilter__NumModelWindow\"]/div[1]"));
@@ -130,24 +132,101 @@ public class Shop_by {
         Assert.assertTrue(page.isDisplayed(), "pick is not displayed");
     }
 
-    @Test // 6. Определить количество элементов на странице.
-    public void Chek3() {
-        driver.get("https://shop.by/noutbuki/?data_mode=1&mode=find&essense_id=846&prof_1000=8991&prof_1000=1612&prof_1000=2023");
+    @Test // цена и размер экрана
+    public void ChekPrice() {
+        driver.get("https://shop.by/noutbuki/?page_id=1&page_size=24&currency=BYB&to_order=&data_mode=1&essense_id=846&in_sale_only=0&mode=find&prof_1000=8991&prof_1000=1612&prof_1000=2023&sort=popularity--number");
+
+        WebElement price =
+                driver.findElement(By.
+                        xpath("//*[@id=\"minnum_45\"]"));
+        price.sendKeys("700");
+        Assert.assertTrue(price.isDisplayed(), "price2 is not displayed");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement price2 =
+                driver.findElement(By.
+                        xpath("//*[@id=\"maxnum_45\"]"));
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        price2.sendKeys("1500");
+        Assert.assertTrue(price.isDisplayed(), "price3 is not displayed");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement screen =
+                driver.findElement(By.
+                        xpath("//*[@id=\"Attr_prof_5828\"]/div/div[2]/span[1]"));
+        screen.click();
+        Assert.assertTrue(screen.isDisplayed(), "screen is not displayed");
 
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        WebElement amount_of_elements =
+        WebElement screen12 =
                 driver.findElement(By.
-                        xpath("/html/body/div[2]/div[1]/div/div[5]/div[2]/div[3]/div/div/div[1]/text()"));
+                        xpath("//*[@id=\"ContAttr_prof_5828\"]/div[22]/a/label"));
+        screen12.click();
+        Assert.assertTrue(screen12.isDisplayed(), "screen2 is not displayed");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertTrue(amount_of_elements.isDisplayed(), "pick is not displayed");
+        WebElement screen14 =
+                driver.findElement(By.
+                        xpath("//*[@id=\"ContAttr_prof_5828\"]/div[19]/a/label"));
+        screen14.click();
+        Assert.assertTrue(screen14.isDisplayed(), "screen14 is not displayed");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement button =
+                driver.findElement(By.
+                        xpath("//*[@id=\"ModelFilter__NumModelWindow\"]/div[1]"));
+        button.click();
+        Assert.assertTrue(button.isDisplayed(), "button is not displayed");
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    @Test // 6. Определить количество элементов на странице.
+    public void Chek3() {
+            driver.get("https://shop.by/noutbuki/?data_mode=1&mode=find&essense_id=846&prof_1000=8991&prof_1000=1612&prof_1000=2023");
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            WebElement amount_of_elements =
+                    driver.findElement(By.
+                            xpath("/html/body/div[2]/div[1]/div/div[5]/div[2]/div[3]/div/div/div[1]/text()"));
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Assert.assertTrue(amount_of_elements.isDisplayed(), "pick is not displayed");
 
     }
 
@@ -161,7 +240,7 @@ public class Shop_by {
         }
         WebElement price =
                 driver.findElement(By.
-                        xpath("//*[@id=\"selZDH_chzn\"]"));
+                        xpath("/html/body/div[2]/div[1]/div/div[5]/div[2]/div[3]/div/div/div[2]/div[2]/span[2]/span[1]"));
         price.click();
         Assert.assertTrue(price.isDisplayed(), "price is not displayed");
 
