@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import static com.codeborne.selenide.Selenide.open;
 import static engine.Utils.browserMaximize;
+import static com.codeborne.selenide.Selenide.screenshot;
 
 
 public class ShopByTest {
@@ -33,7 +34,7 @@ public class ShopByTest {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", PATH_TO_CHROMEDRIVER_EXE);
         Configuration.browser = "chrome";
-        Configuration.timeout = 30000;
+        Configuration.timeout = 3000;
         ChromeOptions options = new ChromeOptions();
         options.setBinary(CHROME_BINARY);
 
@@ -54,6 +55,7 @@ public class ShopByTest {
         open("https://shop.by/");
         browserMaximize();
         logger.info("Browser is opened and maximized");
+        screenshot("Browser_opened_maximized");
 
         //Step 2
         //Перейти в раздел с ноутбуками
@@ -64,6 +66,7 @@ public class ShopByTest {
 
         NotebookForm notebookForm = new NotebookForm();
         logger.info("Notebook page is opened");
+        screenshot("Notebook_page_opened");
 
         //Step 3
         //Задать фильтры
@@ -86,11 +89,13 @@ public class ShopByTest {
         logger.info("Filters are set");
 
         notebookForm.clickShowResultsButton();
+        screenshot("Filters_are_set");
 
         //Step 4
         //Отсортировать список по возрастанию цены
         notebookForm.openSortMenu();
         notebookForm.sortLowPriceHighPrice();
+        screenshot("sortLowPriceHighPrice");
 
         //Step 5
         //Посчитать результаты и записать в список объектов с результатами
@@ -103,11 +108,13 @@ public class ShopByTest {
         Item firstItem = itemList.get(0);
         logger.info(firstItem.getName());
         logger.info(firstItem.getPrice());
+        screenshot("Number_elements_list");
 
         //Step 6
         // Отсортировать наоборот
         notebookForm.openSortMenu();
         notebookForm.sortHighPriceLowPrice();
+        screenshot("sortHighPriceLowPrice");
 
         //Step 7
         //Перейти на последнюю страницу и найти последний элемент
@@ -118,11 +125,13 @@ public class ShopByTest {
         Item lastItem = newItemList.get(newItemList.size()-1);
         logger.info(lastItem.getName());
         logger.info(lastItem.getPrice());
+        screenshot("lastElement");
 
         //Step 8
-        //Сравнить паревый и последний элементы
+        //Сравнить первый и последний элементы
         Assert.assertEquals("Check if item's name is the same", firstItem.getName(), lastItem.getName());
         Assert.assertEquals("Check if item's price is the same", firstItem.getPrice(), lastItem.getPrice());
+        screenshot("Check_item_NameAndPrice_same");
     }
 
     @After
