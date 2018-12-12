@@ -7,56 +7,33 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.*;
-
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import static com.codeborne.selenide.Selenide.open;
 import static engine.Utils.browserMaximize;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.*;
 
+public class ShopByTest {
 
-
-public class AppTest {
     private static final String CHROME_BINARY = "DRIVER/GoogleChromePortable.exe";
     private static final String PATH_TO_CHROMEDRIVER_EXE ="DRIVER/chromedriver.exe";
 
 
     /**
-     * Open shop.by and verify
+     * execute for each test, before executing test
      *
      */
 
-
-    //execute for each test, before executing test
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", PATH_TO_CHROMEDRIVER_EXE);
         Configuration.browser = "chrome";
-        Configuration.timeout = 300;
+        Configuration.timeout = 30000;
         ChromeOptions options = new ChromeOptions();
         options.setBinary(CHROME_BINARY);
 
@@ -64,7 +41,7 @@ public class AppTest {
     }
 
 
-    private Logger logger = LoggerFactory.getLogger(AppTest.class);
+    private Logger logger = LoggerFactory.getLogger(ShopByTest.class);
 
     /**
      * Open shop.by and verify
