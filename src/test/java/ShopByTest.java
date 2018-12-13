@@ -136,7 +136,8 @@ public class ShopByTest {
 
     @After
     public void tearDown() {
-        WebDriverRunner.getWebDriver().quit();
+        WebDriverRunner.getWebDriver().close();
+       WebDriverRunner.getWebDriver().quit();
     }
 
 }
